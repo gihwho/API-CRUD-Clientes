@@ -5,12 +5,8 @@ import com.giovanna.api_rest_crud_clientes.models.Clientes;
 import com.giovanna.api_rest_crud_clientes.repositories.ClientesRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
-import java.awt.*;
 import java.util.List;
 
 //possui todas as rotas para configurar o CRUD
@@ -26,11 +22,11 @@ public class ClientesController {
     }
 
 @PostMapping(value = "/createClientes", produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
-public Clientes createNewClientes(@ResquestBody Clientes clientes){
-        Clientes createClientes = new Clientes();
+public Clientes createNewClientes(@RequestBody Clientes clientes){
+        Clientes createClientes = new Clientes();   //cria uma nova instância da classe Clientes na variável createClientes
 
         createClientes.setName(clientes.getName());
-        createClientes.setcpf(clientes.getCpf());
+        createClientes.setCpf(clientes.getCpf());
         createClientes.setAddress(clientes.getAddress());
 
         return clientesRepository.save(createClientes);
