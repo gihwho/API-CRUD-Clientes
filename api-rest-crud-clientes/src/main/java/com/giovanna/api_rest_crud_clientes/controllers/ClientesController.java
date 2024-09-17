@@ -25,7 +25,7 @@ public class ClientesController {
 public Clientes createNewClientes(@RequestBody Clientes clientes){
         Clientes createClientes = new Clientes();   //cria uma nova instância da classe Clientes na variável createClientes
 
-        createClientes.setName(clientes.getName());
+        createClientes.setName(clientes.getName());     //métodos setters para atribuir valores
         createClientes.setCpf(clientes.getCpf());
         createClientes.setAddress(clientes.getAddress());
 
