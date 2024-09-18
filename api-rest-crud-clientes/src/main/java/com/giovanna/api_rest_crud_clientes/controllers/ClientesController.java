@@ -21,14 +21,29 @@ public class ClientesController {
         return clientesRepository.findAll();
     }
 
-@PostMapping(value = "/createClientes", produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
-public Clientes createNewClientes(@RequestBody Clientes clientes){
+    @PostMapping(value = "/createClientes", produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
+    public Clientes createNewClientes(@RequestBody Clientes clientes){  //lógica para salvar o objeto no bd
         Clientes createClientes = new Clientes();   //cria uma nova instância da classe Clientes na variável createClientes
 
-        createClientes.setName(clientes.getName());     //métodos setters para atribuir valores
+        //métodos setters/getters para atribuir valores
+        createClientes.setName(clientes.getName());
         createClientes.setCpf(clientes.getCpf());
         createClientes.setAddress(clientes.getAddress());
 
-        return clientesRepository.save(createClientes);
-}
+        return clientesRepository.save(createClientes);     //salva ou atualiza uma entidade Clientes no bd
+    }
+
+    @PutMapping(value = "updatedClientes", produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
+    public Clientes updatedClientes(@RequestBody Clientes clientes){
+        Clientes getClientes = clientesRepository.findById(clientes.getId()).orElseThrow();     //verifica se o cliente existe
+
+        Clientes updatedClientes = new Clientes();
+
+        updatedClientes.setId(clientes.getId());
+        updatedClientes.setName(clientes.getName());
+        updatedClientes.setCpf(clientes.getCpf());
+        updatedClientes.setAddress(clientes.getAddress());
+
+        return clientesRepository.save(updatedClientes);
+    }
 }
