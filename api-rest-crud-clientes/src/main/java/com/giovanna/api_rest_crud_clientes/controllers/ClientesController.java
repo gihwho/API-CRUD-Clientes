@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 //possui todas as rotas para configurar o CRUD
-@RestController     //classe resposável por gerenciar todas as requisições de entrada
+@RestController     //classe responsável por gerenciar todas as requisições de entrada
 @RequestMapping("/clientes")    //mapeia URLs a métodos em um controlador
 public class ClientesController {
     @Autowired //realiza injeção de dependências
