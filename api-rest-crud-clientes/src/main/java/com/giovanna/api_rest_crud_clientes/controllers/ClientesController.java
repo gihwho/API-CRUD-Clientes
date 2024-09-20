@@ -1,13 +1,15 @@
 package com.giovanna.api_rest_crud_clientes.controllers;
 
-
 import com.giovanna.api_rest_crud_clientes.models.Clientes;
 import com.giovanna.api_rest_crud_clientes.repositories.ClientesRepository;
+import com.giovanna.api_rest_crud_clientes.service.ClientesService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Optional;
 
 //possui todas as rotas para configurar o CRUD
 @RestController     //classe responsável por gerenciar todas as requisições de entrada
@@ -16,9 +18,13 @@ public class ClientesController {
     @Autowired //realiza injeção de dependências
     ClientesRepository clientesRepository;
 
-    @GetMapping(value = "/all", produces = MediaType.APPLICATION_JSON_VALUE)
-    public List<Clientes> getAllClientes() {
-        return clientesRepository.findAll();
+    @Autowired
+    ClientesService clientesService;
+
+    @GetMapping(value = "/{id}")
+    public ResponseEntity<Clientes> clientesID(@PathVariable Long id){
+        Optional<Clientes> clientes = clientesService.clientesID(id);
+        return clientes.map(ResponseEntity::ok).orElseGet(() -> ResponseEntity.notFound().build());
     }
 
     @PostMapping(value = "/createClientes", produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
@@ -45,5 +51,12 @@ public class ClientesController {
         updatedClientes.setAddress(clientes.getAddress());
 
         return clientesRepository.save(updatedClientes);
+    }
+
+    @DeleteMapping(value = "/deleteClientes/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
+    public Clientes deleteClientes(@PathVariable Long id){
+        Clientes getClientes = clientesRepository.findById(id).orElseThrow();
+        clientesRepository.delete(getClientes);
+        return getClientes;
     }
 }
