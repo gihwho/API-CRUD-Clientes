@@ -12,7 +12,7 @@ import java.io.Serializable;    //java pode converter a classe em objeto
 @Entity
 @Table(name = "cliente")
 @EqualsAndHashCode(of = "id")
-public class Clientes implements Serializable {
+public class Cliente implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)     //valor será incrementado automaticamente
     private Long id;
@@ -26,5 +26,5 @@ public class Clientes implements Serializable {
     @Column(nullable = false)
     private String address;
 
-    public Clientes() {}
+    public Cliente() {}
 }

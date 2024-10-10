@@ -9,10 +9,10 @@
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>com.giovanna</groupId>
-	<artifactId>api-rest-crud-clientes</artifactId>
+	<artifactId>api-rest-crud-cliente</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>api-rest-crud-clientes</name>
-	<description>Aplicação com objetivo de gerenciar o cadastro de clientes em um sistema.</description>
+	<name>api-rest-crud-cliente</name>
+	<description>Aplicação com objetivo de gerenciar o cadastro de cliente em um sistema.</description>
 	<url/>
 	<licenses>
 		<license/>

@@ -1,5 +1,5 @@
 # API-CRUD-Clientes
-Aplicação com objetivo de gerenciar o cadastro de clientes em um sistema. Implementa operações do CRUD básicas como criar, consultar, atualizar e inserir.
+Aplicação com objetivo de gerenciar o cadastro de cliente em um sistema. Implementa operações do CRUD básicas como criar, consultar, atualizar e inserir.
 
 # Tecnologias Utilizadas
 Backend: Java/Spring
