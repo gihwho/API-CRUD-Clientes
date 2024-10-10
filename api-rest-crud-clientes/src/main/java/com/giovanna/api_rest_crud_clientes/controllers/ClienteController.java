@@ -28,34 +28,16 @@ public class ClienteController {
 
     @PostMapping(produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
     public Cliente createNewCliente(@RequestBody Cliente cliente){  //lógica para salvar o objeto no bd
-        Cliente createCliente = new Cliente();   //cria uma nova instância da classe Clientes na variável createClientes
-
-        //métodos setters/getters para atribuir valores
-        createCliente.setName(cliente.getName());
-        createCliente.setCpf(cliente.getCpf());
-        createCliente.setAddress(cliente.getAddress());
-
-        return clientesRepository.save(createCliente);     //salva ou atualiza uma entidade Clientes no bd
+        return clientesService.createNewCliente(cliente);               //salva ou atualiza uma entidade Clientes no bd
     }
 
     @PutMapping(produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
     public Cliente updatedCliente(@RequestBody Cliente cliente){
-        Cliente getCliente = clientesRepository.findById(cliente.getId()).orElseThrow();     //verifica se o cliente existe
-
-        Cliente updatedCliente = new Cliente();
-
-        updatedCliente.setId(cliente.getId());
-        updatedCliente.setName(cliente.getName());
-        updatedCliente.setCpf(cliente.getCpf());
-        updatedCliente.setAddress(cliente.getAddress());
-
-        return clientesRepository.save(updatedCliente);
+        return clientesService.updatedCliente(cliente);
     }
 
     @DeleteMapping(value = "/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
     public Cliente deleteCliente(@PathVariable Long id){
-        Cliente getCliente = clientesRepository.findById(id).orElseThrow();
-        clientesRepository.delete(getCliente);
-        return getCliente;
+        return clientesService.deleteCliente(id);
     }
 }
