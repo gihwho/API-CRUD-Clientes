@@ -1,0 +1,21 @@
+services:
+  db:
+    image: mysql:8.0
+    container_name: mysql-container
+    environment:
+      MYSQL_ALLOW_EMPTY_PASSWORD: "yes"
+      MYSQL_DATABASE: clientes
+    ports:
+      - "3307:3306"
+    volumes:
+      - db-data:/var/lib/mysql
+    networks:
+      - spring-net
+
+volumes:
+  db-data:
+    driver: local
+
+networks:
+  spring-net:
+    driver: bridge
